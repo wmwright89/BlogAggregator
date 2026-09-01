@@ -1,0 +1,27 @@
+{
+  "name": "blogaggregator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "tsx ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wmwright89/BlogAggregator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wmwright89/BlogAggregator/issues"
+  },
+  "homepage": "https://github.com/wmwright89/BlogAggregator#readme",
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
