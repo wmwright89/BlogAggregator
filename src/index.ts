@@ -1,4 +1,4 @@
-import { registerCommand, handlerLogin, runCommand, handlerRegister, handlerReset, handlerGetUsers } from "./commands.js";
+import { registerCommand, handlerLogin, runCommand, handlerRegister, handlerReset, handlerGetUsers, handlerAgg, handlerAddFeed, handlerFeeds } from "./commands.js";
 import type { CommandsRegistry } from "./commands.js";
 
 async function main() { 
@@ -7,6 +7,9 @@ async function main() {
     registerCommand(registry, "register", handlerRegister);
     registerCommand(registry, "reset", handlerReset);
     registerCommand(registry, "users", handlerGetUsers);
+    registerCommand(registry, "agg", handlerAgg);
+    registerCommand(registry, "addfeed", handlerAddFeed);
+    registerCommand(registry, "feeds", handlerFeeds);
     
     const input = process.argv.slice(2);
     if (input.length < 1){
@@ -19,7 +22,7 @@ async function main() {
         await runCommand(registry, commandName, ...argArray);
     } catch (err) {
         if (err instanceof Error) {
-            console.error(err.message);
+            console.error(err);
             process.exit(1);
         }
     }

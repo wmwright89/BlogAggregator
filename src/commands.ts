@@ -1,5 +1,8 @@
 import { setUser, readConfig } from "./config.js";
 import { createUser, getUser, resetUsers, getUsers } from "./lib/db/queries/users.js";
+import { fetchFeed } from "./lib/rss.js";
+import { createFeed, queryFeeds } from "./lib/db/queries/feeds.js";
+import type { Feed, User } from "./lib/db/schema.js";
 
 export type CommandHandler = (cmd: string, ...args: string[]) => Promise<void>;
 
@@ -78,5 +81,43 @@ export async function handlerGetUsers(cmdName: string, ...args: string[]) {
         }
     } catch (err) {
         console.error(err.message);
+    }
+}
+
+export async function handlerAgg(cmdName: string, ...args: string[]){
+    const feed = await fetchFeed("https://www.wagslane.dev/index.xml");
+    console.log(feed);
+}
+
+export async function handlerAddFeed(cmdName: string, ...args: string[] ) {
+    if (args.length === 2){
+        const read = readConfig();
+        const currentUser = await getUser(read.currentUserName);
+        const newFeed = await createFeed(args[0], args[1], currentUser.id);
+        printFeed(newFeed, currentUser);
+    } else {
+        throw new Error("Please provide a user and a url");
+    }
+}
+
+function printFeed(feed: Feed, user: User) {
+    console.log(`User: ${user.name}`);
+    console.log(`Feed: ${feed.name}`);
+    console.log(`Url: ${feed.url}`);
+    console.log(`Created At: ${feed.createdAt}`);
+    console.log(`Updated At: ${feed.updatedAt}`);
+}
+
+export async function handlerFeeds(feed: Feed, user: User){
+    const results = await queryFeeds();
+    if (results.feed === undefined){
+        for (const result of results){
+            console.log(`- Feed: ${result.feedName}`);
+            console.log(`   - URL: ${result.feedURL}`);
+            console.log(`   - User: ${result.user}`);
+        }
+    } else {
+        throw new Error("There are no feeds in the database.")
+
     }
 }
