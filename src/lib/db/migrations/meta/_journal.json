@@ -15,6 +15,27 @@
       "when": 1788450782154,
       "tag": "0001_nasty_starjammers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1788462899404,
+      "tag": "0002_last_alex_wilder",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1788545591085,
+      "tag": "0003_secret_sharon_ventura",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1788552748359,
+      "tag": "0004_open_green_goblin",
+      "breakpoints": true
     }
   ]
 }
