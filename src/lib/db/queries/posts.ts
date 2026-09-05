@@ -24,6 +24,6 @@ export async function getPostsForUser(user: string, limit?: number) {
     }
     
     const result = await query;
-    
+    return result;    
 }
 
